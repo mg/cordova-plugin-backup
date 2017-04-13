@@ -10,7 +10,7 @@ module.exports = function (context) {
     parser = new xml2js.Parser();
 
   var manifestLocation = context.opts.projectRoot + '/platforms/android/AndroidManifest.xml',
-    backupServiceKeyLocation = context.opts.projectRoot + '/backup_service_key_param.xml',
+    backupServiceKeyLocation = context.opts.projectRoot + '/backup_service_key_param',
 
     manifestObject,
     backupServiceKey;
