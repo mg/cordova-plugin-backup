@@ -31,20 +31,9 @@ module.exports = function (context) {
     } else {
       deferral.reject(new Error('Unable to extract the Backup Service API key from: ' + backupServiceKeyLocation));
     }
-    /*parser.parseString(data, function (err, result) {
-      if (result && result.resources && result.resources.string && result.resources.string.length === 1 && result.resources.string[0]._) {
-        backupServiceKey = result.resources.string[0]._;
-
-        if (readyToModify()) {
-          modifyXmlValues();
-        }
-      }
-      else {
-        deferral.reject(new Error('Unable to extract the Backup Service API key from: ' + backupServiceKeyLocation));
-      }
-    });*/
   });
-
+  console.log(backupServiceKey)
+  
   function readyToModify() {
     return manifestObject !== undefined && backupServiceKey !== undefined;
   }
