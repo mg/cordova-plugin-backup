@@ -10,7 +10,7 @@ module.exports = function (context) {
     parser = new xml2js.Parser();
 
   var manifestLocation = context.opts.projectRoot + '/platforms/android/AndroidManifest.xml',
-    backupServiceKeyLocation = context.opts.projectRoot + '/platforms/android/res/values/backup_service_key_param.xml',
+    backupServiceKeyLocation = context.opts.projectRoot + '/backup_service_key_param.xml',
 
     manifestObject,
     backupServiceKey;
@@ -26,7 +26,12 @@ module.exports = function (context) {
   });
 
   fs.readFile(backupServiceKeyLocation, function (err, data) {
-    parser.parseString(data, function (err, result) {
+    if (!err) {
+      backupServiceKey = data
+    } else {
+      deferral.reject(new Error('Unable to extract the Backup Service API key from: ' + backupServiceKeyLocation));
+    }
+    /*parser.parseString(data, function (err, result) {
       if (result && result.resources && result.resources.string && result.resources.string.length === 1 && result.resources.string[0]._) {
         backupServiceKey = result.resources.string[0]._;
 
@@ -37,7 +42,7 @@ module.exports = function (context) {
       else {
         deferral.reject(new Error('Unable to extract the Backup Service API key from: ' + backupServiceKeyLocation));
       }
-    });
+    });*/
   });
 
   function readyToModify() {
