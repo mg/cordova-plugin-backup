@@ -14,8 +14,10 @@ public class BackupAgentHelper extends android.app.backup.BackupAgentHelper {
 
     @Override
     public void onCreate() {
+      Log.d(Backup.LOG_TAG, "Backup: create file");
         FileBackupHelper helper = new FileBackupHelper(this, FILE_NAME);
         addHelper(FILES_BACKUP_KEY, helper);
+        Log.d(Backup.LOG_TAG, "Backup: file created");
     }
 
     @Override
