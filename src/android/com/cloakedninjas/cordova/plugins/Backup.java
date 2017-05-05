@@ -48,7 +48,7 @@ public class Backup extends CordovaPlugin {
             writer.write(data.toString());
 
             // request a backup from Android system
-            Log.d(LOG_TAG, "Requesting Backup: " + data.toString());
+            Log.d(LOG_TAG, "Requesting Backup!: " + data.toString());
             BackupManager bm = new BackupManager(context);
             bm.dataChanged();
         } catch (IOException e) {
