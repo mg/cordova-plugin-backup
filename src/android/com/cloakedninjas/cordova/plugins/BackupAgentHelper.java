@@ -22,6 +22,7 @@ public class BackupAgentHelper extends android.app.backup.BackupAgentHelper {
     public void onBackup(ParcelFileDescriptor oldState, BackupDataOutput data,
                          ParcelFileDescriptor newState) throws IOException {
 
+        Log.d(Backup.LOG_TAG, "Backup requested (outer): " + data.toString());
         synchronized (Backup.sDataLock) {
             Log.d(Backup.LOG_TAG, "Backup requested: " + data.toString());
             super.onBackup(oldState, data, newState);
